@@ -225,119 +225,247 @@ Together, these analyses confirm that the retrieved corpus is coherent, interdis
 
 ---
 
+
 ## 3) PRISMA workflow and screening pipeline
 
-All retrieved records entered a PRISMA-compliant screening pipeline:
+All retrieved records entered a **PRISMA-compliant, fully auditable screening pipeline** specifically designed for a **cross-disciplinary systematic review** spanning computer science, engineering, and surgical sciences.  
+The pipeline emphasizes **traceability, conservative exclusion, and reproducibility**, ensuring that every decision can be independently inspected and replicated.
 
 Identification → Duplicate Removal → Title Screening → Abstract Screening → Full-Text Screening → Qualitative Screening → Inclusion
 
 ![PRISMA workflow](figs/prisma.jpg)
 
-### PRISMA flow numbers (fully backed by CSV files)
+---
 
-Identified: 1,027  
-After duplicate removal: 939  
-After title screening: 744  
-After abstract screening: 386  
-Full-text assessed: 250  
-After qualitative screening: 182  
-Final included: 182 (102 main + 85 supplementary)
+### 3.1) PRISMA flow summary (numerical evolution)
 
-Each transition is traceable to a dedicated folder under prisma/, with explicit retained and rejected records.
+The table below summarizes the **quantitative evolution of the corpus** across PRISMA stages.  
+Importantly, reductions at each stage are **intentional and methodologically motivated**, not arbitrary filtering.
+
+| PRISMA stage | Records | Description |
+|-------------|---------|-------------|
+| Identified | 1,027 | Raw corpus aggregated from all repositories and manual backward searches |
+| After duplicate removal | 939 | Redundant indexing across databases removed |
+| After title screening | 744 | Clearly irrelevant or out-of-scope studies excluded |
+| After abstract screening | 386 | Studies failing methodological relevance criteria excluded |
+| Full-text assessed | 250 | Subset eligible for detailed methodological inspection |
+| After qualitative screening | 182 | Studies meeting rigor, transparency, and comparability requirements |
+| Final included | 182 | 102 primary (core analysis) + 85 supplementary (contextual support) |
+
+Each numerical transition is supported by **explicit CSV decision logs**, ensuring full transparency.
 
 ---
 
-## 4) Duplicate removal — prisma/02_duplicate_removal
+### 3.2) Stage-wise PRISMA screening details and artifacts
 
-Goal: remove duplicate studies indexed across multiple repositories.
-
-Detection strategy:
-- DOI matching (primary)
-- Normalized title similarity (fallback when DOI is missing or inconsistent)
-
-Files:
-- articles_duplicate_marked.csv – all detected duplicates
-- articles_rejected_by_duplicacy.csv – removed records
-- articles_after_duplicates.csv – retained unique corpus
-- articles_categorized.csv – intermediate organization artifact (if used)
-
-This step ensures that subsequent statistics, trends, and screening decisions are not biased by indexing redundancy.
+This subsection explains **why each stage exists**, **how decisions were made**, **which studies were excluded**, and **where the evidence for those decisions resides**.
 
 ---
 
-## 5) Title screening — prisma/03_title_screening
+#### 3.2.1) Identification — `prisma/01_articles_per_source`
 
-Goal: remove clearly out-of-scope records conservatively.
+**Rationale**  
+Given the interdisciplinary nature of aesthetic outcome prediction and evaluation, the identification stage was intentionally **recall-oriented**. Missing relevant computational studies would be more harmful than temporarily including marginal ones.
 
-Typical exclusion reasons:
-- Not related to surgery or not within PR/oncological context
-- No aesthetic outcome focus
+**What happens here**
+- Aggregation of all automated query outputs
+- Inclusion of manually identified references
+- No quality or relevance judgment at this stage
+
+**Why this matters**
+- Prevents early bias toward a single discipline or publication venue
+- Ensures visibility of emerging or hybrid research not consistently indexed
+
+**Artifact**
+
+| File | Description |
+|-----|-------------|
+| `articles.csv` | Complete raw retrieval with metadata (titles, abstracts, DOIs, years, venues, sources) |
+
+---
+
+#### 3.2.2) Duplicate removal — `prisma/02_duplicate_removal`
+
+**Rationale**  
+The same study frequently appears across multiple repositories with slight metadata variations. Without explicit duplicate handling, downstream analyses (e.g., trends, distributions) would be distorted.
+
+**How duplicates are detected**
+- DOI matching ensures high-confidence identification
+- Title similarity acts as a robust fallback for missing or inconsistent DOIs
+
+**Decision principle**
+- Only **one canonical record** is retained
+- No study is excluded for scientific reasons at this stage
+
+**Artifacts**
+
+| File | Description |
+|-----|-------------|
+| `articles_duplicate_marked.csv` | All detected duplicate groupings |
+| `articles_rejected_by_duplicacy.csv` | Records removed due to redundancy |
+| `articles_after_duplicates.csv` | Clean, de-duplicated corpus |
+| `articles_categorized.csv` | Optional organization layer for inspection |
+
+---
+
+#### 3.2.3) Title screening — `prisma/03_title_screening`
+
+**Rationale**  
+Title screening acts as a **first relevance filter**, removing studies that are unmistakably outside the review’s scope while preserving ambiguous cases.
+
+**Why conservative exclusion is used**
+- Titles often underspecify methods
+- Overly aggressive filtering risks false negatives
+
+**Typical exclusion logic**
+- No surgical context
+- No aesthetic outcome dimension
 - No computational or technical contribution
 
-Files:
-- articles_titles_screened_marked.csv
-- articles_rejected_by_titles.csv
-- articles_after_title_screening.csv
+**Artifacts**
+
+| File | Description |
+|-----|-------------|
+| `articles_titles_screened_marked.csv` | Title-level inclusion flags |
+| `articles_rejected_by_titles.csv` | Excluded records with reason labels |
+| `articles_after_title_screening.csv` | Retained set for abstract review |
 
 ---
 
-## 6) Abstract screening — prisma/04_abstract_screening
+#### 3.2.4) Abstract screening — `prisma/04_abstract_screening`
 
-Goal: enforce methodological relevance and lock the review taxonomy.
+**Rationale**  
+Abstract screening enforces **methodological relevance** and formalizes the **prediction vs. evaluation taxonomy** used throughout the review.
 
-Inclusion requirements:
-- Addresses aesthetic outcome prediction or evaluation
-- Uses imaging data (2D or 3D)
-- Presents a computational method (not purely narrative)
+**Key evaluation questions**
+- Is the task clearly prediction or evaluation?
+- Is imaging data central to the methodology?
+- Is a computational method actually proposed or used?
 
-Files:
-- articles_abstract_screened_marked.csv
-- articles_rejected_by_abstract.csv
-- articles_after_abstract_screening.csv
+**Why this stage is critical**
+- Prevents inclusion of studies that only mention computation superficially
+- Aligns the corpus with the analytical structure of the review
+
+**Artifacts**
+
+| File | Description |
+|-----|-------------|
+| `articles_abstract_screened_marked.csv` | Abstract-level decisions |
+| `articles_rejected_by_abstract.csv` | Excluded studies with rationale |
+| `articles_after_abstract_screening.csv` | Corpus entering full-text review |
 
 ---
 
-## 7) Full-text screening — prisma/05_fulltext_screening
+#### 3.2.5) Full-text screening — `prisma/05_fulltext_screening`
 
-Goal: confirm eligibility using full-text evidence.
+**Rationale**  
+At this stage, claims made in abstracts are verified against **actual methodological content**.
 
-Common exclusion reasons:
-- Insufficient methodological detail
-- Weak or unclear evaluation protocol
-- Misalignment with aesthetic prediction/evaluation despite abstract wording
+**Assessment focus**
+- Are methods reproducible in principle?
+- Are datasets sufficiently described?
+- Is the evaluation protocol meaningful and aligned with the task?
 
-Files:
-- articles_full-text_screened_marked.csv
-- articles_rejected_by_full-text.csv
-- articles_after_full-text_screening.csv
+**Why exclusions occur here**
+- Abstracts may overstate contributions
+- Full text may lack sufficient detail for comparison or synthesis
 
-Conceptual structure of the retained literature:
+**Artifacts**
+
+| File | Description |
+|-----|-------------|
+| `articles_full-text_screened_marked.csv` | Full-text eligibility decisions |
+| `articles_rejected_by_full-text.csv` | Excluded studies with explicit reasons |
+| `articles_after_full-text_screening.csv` | Studies retained for quality assessment |
+
+**Conceptual structure of retained literature**
 
 ![Co-occurrence graph](figs/co-occurance_graph.png)
 
-This network highlights dominant methodological themes, subdomains (e.g., facial vs. breast aesthetics), and cross-domain overlaps that support transferability arguments in the review.
+### Interpretation of the keyword co-occurrence network
+
+The co-occurrence network provides a compact view of the **conceptual organization** of the retained literature, showing how methodological, clinical, and evaluation concepts are connected.
+
+- **Modular but connected structure**
+  - Distinct thematic clusters with strong inter-cluster links
+  - Indicates an integrative, non-fragmented research field
+
+- **Central bridging concepts**
+  - artificial intelligence, machine learning, plastic surgery
+  - Link computational methods with clinical application
+
+- **Main clusters**
+  - **Prediction / methodology**: CNNs, networks, training, representation, GANs, simulation  
+  - **Evaluation / validation**: aesthetic evaluation, objective assessment, gold standard  
+  - **Clinical domains**: facial aesthetics and breast surgery (reconstruction, cancer, cosmetic outcome)  
+  - **Imaging modality**: photograph and digital photography as dominant data sources
+
+- **Key implication**
+  - Prediction and evaluation are distinct but tightly coupled
+  - Computational methods are reused across clinical contexts
+  - The structure validates the review taxonomy and supports cross-study comparison
+
+This visualization validates thematic coherence and reveals methodological clusters.
 
 ---
 
-## 8) Qualitative / quality screening — prisma/06_qualitive_fulltext_qualitive
+#### 3.2.6) Qualitative / quality screening — `prisma/06_qualitive_fulltext_qualitive`
 
-Goal: ensure that the final corpus supports robust comparative synthesis.
+**Rationale**  
+Not all technically valid studies are equally useful for comparative synthesis.  
+This stage prioritizes **substantive, interpretable, and transferable contributions**.
 
-Quality dimensions:
-- Novelty beyond incremental reporting
-- Technical rigor and clarity
-- Dataset adequacy and transparency
-- Evaluation validity and (when applicable) clinical relevance
-- Practical value for prediction/evaluation workflows
+**Quality is assessed along multiple axes**
+- Methodological rigor
+- Dataset transparency
+- Evaluation validity
+- Practical relevance to real workflows
 
-Files:
-- articles_qualitive_screened_marked.csv
-- articles_rejected_by_quality.csv
-- articles_after_qualitive_screening.csv
+**Exclusions at this stage**
+- Do not indicate poor science
+- Reflect limited comparative or analytical value
+
+**Artifacts**
+
+| File | Description |
+|-----|-------------|
+| `articles_qualitive_screened_marked.csv` | Quality decisions |
+| `articles_rejected_by_quality.csv` | Excluded studies with rationale |
+| `articles_after_qualitive_screening.csv` | Final high-quality corpus |
 
 ---
 
-## 9) Final included studies and synthesis artifacts
+### 3.3) Final inclusion and synthesis artifacts
+
+The final corpus is structured to **directly support analysis, comparison, and discussion**.
+
+**Included studies**
+
+| File | Description |
+|-----|-------------|
+| `prisma/07_candidate_papers/candidate_papers.csv` | Definitive list of included studies |
+
+**Synthesis artifacts**
+
+| Path | Description |
+|-----|-------------|
+| `prisma/08_summarized_texts/combined_summs.xlsx` | Unified summaries for cross-study comparison |
+| `prisma/08_summarized_texts/summerized_per_tasks/` | Task-specific structured summaries |
+
+---
+
+**Overall methodological takeaway**
+
+- Screening decisions are **progressive, conservative, and justified**
+- Every exclusion is **documented and reversible**
+- All artifacts are **machine-readable, immutable, and version-controlled**
+- The pipeline supports **independent audit, replication, and extension**
+
+This PRISMA implementation is therefore not only compliant, but **operationally transparent and computationally reproducible**.
+
+---
+
+## 4) Final included studies and synthesis artifacts
 
 Final included studies:
 - prisma/07_candidate_papers/candidate_papers.csv
@@ -350,7 +478,7 @@ These files directly support the paper’s taxonomy, comparative tables, limitat
 
 ---
 
-## 10) Reproducibility and protocol statement
+## 5) Reproducibility and protocol statement
 
 This review was not registered in PROSPERO due to its primary emphasis on computer science, engineering, and imaging-based computational methodologies, which extend beyond PROSPERO’s core biomedical scope.
 
@@ -364,7 +492,7 @@ All screening transitions, inclusion decisions, and exclusions are traceable thr
 
 ---
 
-## 11) Repository hierarchy
+## 6) Repository hierarchy
 
 review-paper tree  
 ├── README.md  

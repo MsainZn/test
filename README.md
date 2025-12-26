@@ -30,7 +30,7 @@ The review strictly follows the PRISMA 2020 framework:
 
 The PRISMA flow diagram used in the manuscript summarizes the numerical transitions across these stages.
 
-![PRISMA workflow](figs/prisma.png)
+![PRISMA workflow](figs/prisma.jpg)
 
 ---
 

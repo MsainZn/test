@@ -127,8 +127,6 @@ After merging all retrieved records, we analysed **repository-level contribution
 
 This distribution confirms that the retrieval process is **not dominated by a single database** and that multi-source querying is necessary for this research topic.
 
-
-
 ### 2.2) Vocabulary analysis: validating the search strategy
 
 To assess whether the keyword design and filters successfully captured the intended research space, we analysed the dominant terminology present in the retrieved corpus.

@@ -1,4 +1,3 @@
-```markdown
 # PRISMA-Based Systematic Review Repository
 
 **Transparent, Reproducible, and Auditable Literature Screening Pipeline**
@@ -230,4 +229,3 @@ Any researcher can:
 4. Trace every excluded study to a documented reason
 
 This repository fully satisfies PRISMA requirements for **transparency, auditability, and reproducibility**.
-```

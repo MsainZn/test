@@ -1,0 +1,7 @@
+Title,DOI,Responsible,Task,Surgery/Modality,Summary,Limitations,Evaluation,Dataset (link)
+Breast contour detection for the aesthetic evaluation of breast cancer conservative treatment,https://doi.org/10.1007/978-3-540-75175-5_65,Helena,Contour Detection,Lumpectomy,Shortest path algorithm for contour detection in breast images,,,
+Endpoint Detection in Breast Images for Automatic Classification of Breast Cancer Aesthetic Results,https://doi.org/10.1007/978-3-031-77789-9_12,Helena,Endpoint Detection,Lumpectomy,YOLO for endpoint detection in breast images,,,
+Deep edge detection methods for the automatic calculation of the breast contour,https://doi.org/10.3390/bioengineering10040401,Helena,Contour Detection,Lumpectomy,Deep neural network for contour detection in breast images,,,
+A novel approach to keypoint detection for the aesthetic evaluation of breast cancer surgery outcomes,https://doi.org/10.1007/s12553-020-00423-8,Helena,Contour Detection,Lumpectomy,Deep neural network based on breast segmentation for contour detection in breast images,,,
+Automated 3D Perioral Landmark Detection Using High-Resolution Network: Artificial Intelligence–based Anthropometric Analysis,https://doi.org/10.1093/asj/sjae103,Helena,Landmark Detection,,,,,
+Analysis of surgical outcome after upper eyelid surgery by computer vision algorithm using face and facial landmark detection,https://doi.org/10.1007/s00417-021-05219-8,Helena,Landmark Detection,,,,,

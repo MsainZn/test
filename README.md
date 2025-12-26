@@ -1,108 +1,129 @@
 # Automatic Prediction and Evaluation of Aesthetic Outcomes in Plastic and Oncological Surgery: A Systematic Review
 
 **Authors:** Helena Montenegro*†, Mohammad Hossein Zolfagharnasab†, Fábio Teixeira‡, Gonçalo da Costa Sequeira Pinto‡, Joana Santos‡, Pedro Ferreira‡, Eduard-Alexandru Bonci, Carlos Mavioso, Maria J. Cardoso, Jaime S. Cardoso  
-**Corresponding author:** `maria.h.sampaio@inesctec.pt`  
+**Corresponding author:** maria.h.sampaio@inesctec.pt  
 †‡ Equal contribution
 
 ---
 
-## 1. What This Repository Contains
+## 1) Search strategy and literature retrieval
 
-This repository is the **full PRISMA audit trail** for the systematic review:
+### 1.1 Selected repositories
 
-> **Automatic Prediction and Evaluation of Aesthetic Outcomes in Plastic and Oncological Surgery: A Systematic Review On Current Progress, Challenges, and Future Directions**
+To ensure **exhaustive, interdisciplinary coverage** spanning clinical, biomedical, and engineering perspectives, we queried the following repositories:
 
-It is designed to make the review **transparent, reproducible, and verifiable**, by providing:
+- **Scopus** – broad interdisciplinary indexing with advanced filtering options, used as the reference platform for query design  
+- **PubMed** – primary source for biomedical and clinically oriented research  
+- **IEEE Xplore** – core repository for engineering- and algorithm-driven methodologies  
+- **Semantic Scholar** – complementary discovery layer capturing cross-indexed records and preprint-linked works  
+- **Manual backward reference search** – identification of highly relevant studies cited by included works but not retrieved through automated queries  
 
-- The **complete PRISMA screening pipeline** (raw retrieval → duplicate removal → title/abstract/full-text screening → qualitative screening → final included studies)
-- A **file-level record** of every inclusion/exclusion decision (stored in CSVs)
-- Statistical and qualitative artifacts used in the manuscript (figures and summaries)
+Although each repository requires a different query syntax, **the same conceptual keyword logic, inclusion filters, and constraints** were applied consistently across all platforms. Only syntax-level adaptations were made.
 
-The repository aligns with the manuscript’s goals:
-- Review SoTA methods for **aesthetic outcome prediction** and **evaluation**
-- Organize datasets/benchmarks/models used in the field
-- Identify cross-domain overlaps (facial/breast/oncological/other body regions)
-- Highlight limitations (data access, heterogeneity, validation gaps)
-- Discuss clinical integration barriers and future directions (e.g., multimodal models)
+All retrieved records from **all repositories** were merged into a single dataset, forming the **Identification** stage of the PRISMA workflow.
 
----
+Raw merged retrieval (all sources combined):  
+`prisma/01_articles_per_source/articles.csv`
 
-## 2. PRISMA Overview (Audit Trail Entry Point)
-
-This review follows the PRISMA framework:
-- **Identification**
-- **Screening**
-- **Eligibility**
-- **Inclusion**
-
-The diagram below summarizes **transition** and **where exclusions occurred**. Each number is backed by a CSV file under `prisma/` (see “Reproducibility” section).
-
-![PRISMA workflow](figs/prisma.jpg)
+This file contains titles, abstracts, DOIs (when available), publication years, venues, and source identifiers.
 
 ---
 
-## 3. Search Strategy (How Studies Were Found)
+### 1.2 Keyword design and search intent
 
-### Data Sources
-- Scopus  
-- PubMed  
-- IEEE Xplore  
-- Semantic Scholar  
-- Manual backward reference search (bibliographies of included works)
+The search strategy was explicitly designed to capture the **intersection of three core dimensions**:
 
-### Two Complementary Search Tracks
-To reflect the dual challenge emphasized in the paper—**pre-operative expectation management** (prediction) and **post-operative standardized assessment** (evaluation)—we conducted two focused searches:
+1. **Aesthetic context**  
+   aesthetic, esthetic, cosmetic, plastic, reconstructive, oncological  
 
-1) **Prediction of aesthetic outcomes** (simulation / post-op prediction / outcome prediction)  
-2) **Evaluation of aesthetic outcomes** (assessment / scoring / objective evaluation)
+2. **Surgical setting**  
+   surgery  
 
-Exact queries are reported verbatim in the manuscript to ensure full reproducibility.
+3. **Computational task**  
+   - **Prediction**: outcome prediction, simulation, pre-operative prediction, post-operative prediction  
+   - **Evaluation**: evaluation, assessment, scoring  
 
----
+To ensure methodological relevance and comparability, additional constraints were imposed:
+- English-language publications  
+- Journal articles  
+- Subject areas limited to Computer Science and Engineering  
 
-## 4. What the High-Level Statistics Say (Before You Dive into CSVs)
-
-### 4.1 Temporal trend of the field (Prediction vs. Evaluation)
-
-The figure below shows the yearly publication trend. It explains *why* the review splits the taxonomy into prediction and evaluation: evaluation is historically dominant, while prediction accelerates later (especially with modern AI).
-
-![Trend by year](figs/trend_by_year.png)
-
-**Interpretation (repository-level):**
-- **Evaluation** appears earlier and grows steadily (often lower computational barriers; includes rule-based/objective measurements and classical ML).
-- **Prediction** shows notable growth in later years, consistent with advances in deep learning, generative modeling, and 3D processing pipelines.
+This design intentionally filters out purely clinical narratives, non-imaging approaches, and non-computational aesthetic discussions.
 
 ---
 
-### 4.2 Where the articles came from (database contribution)
+### 1.3 Example search strings (Scopus syntax)
 
-This figure summarizes how much each source contributed to the candidate pool.
+The following queries illustrate the **Scopus implementation** of the search strategy.  
+Equivalent queries were executed on PubMed, IEEE Xplore, and Semantic Scholar with syntax adaptations only.
+
+#### Prediction of aesthetic outcomes
+
+TITLE-ABS-KEY ( ("aesthetic" OR "esthetic" OR "cosmetic" OR "plastic" OR "reconstructive" OR "oncological")  
+AND "surgery"  
+AND ("outcome prediction" OR "simulation" OR "post-operative prediction" OR "pre-operative prediction") )  
+AND ( LIMIT-TO ( DOCTYPE , "re" ) )  
+AND ( LIMIT-TO ( SUBJAREA , "COMP" ) OR LIMIT-TO ( SUBJAREA , "ENGI" ) )  
+AND ( LIMIT-TO ( LANGUAGE , "English" ) )  
+AND ( LIMIT-TO ( SRCTYPE , "j" ) )
+
+#### Evaluation of aesthetic outcomes
+
+TITLE-ABS-KEY ( ("aesthetic" OR "esthetic" OR "cosmetic" OR "plastic" OR "reconstructive" OR "oncological")  
+AND "surgery"  
+AND ("evaluation" OR "assessment") )  
+AND ( LIMIT-TO ( DOCTYPE , "re" ) )  
+AND ( LIMIT-TO ( SUBJAREA , "COMP" ) OR LIMIT-TO ( SUBJAREA , "ENGI" ) )  
+AND ( LIMIT-TO ( LANGUAGE , "English" ) )  
+AND ( LIMIT-TO ( SRCTYPE , "j" ) )
+
+---
+
+## 2) Distribution of retrieved literature
+
+After merging all retrieved records, we analyzed **repository-level contributions** to assess coverage, overlap, and redundancy.
 
 ![Distribution per source](figs/distribution_per_source.png)
 
-**Interpretation (repository-level):**
-- Scopus contributes the largest share of records (broad indexing).
-- Semantic Scholar provides strong complementary coverage.
-- Manual search captures relevant works that might be missed by strict indexing/query boundaries.
+### Interpretation
+
+- **Scopus** contributes the largest share of records, reflecting its broad interdisciplinary indexing.  
+- **IEEE Xplore** and **PubMed** provide complementary coverage, capturing engineering-centric and clinically oriented works respectively.  
+- **Semantic Scholar** contributes additional relevant studies that may not be consistently indexed elsewhere.  
+- **Manual backward search**, although smaller in volume, is critical for identifying seminal or domain-specific works missed by automated queries.
+
+The presence of substantial contributions from multiple repositories confirms that the retrieval process is **not dominated by a single index** and that combining sources is essential for comprehensive coverage.
 
 ---
 
-### 4.3 Interdisciplinary footprint (prediction vs evaluation domains)
+## 3) Vocabulary analysis and validation of the search strategy
 
-This distribution supports a key claim in the manuscript: the area is inherently interdisciplinary, spanning engineering/computer science and clinical domains.
+To verify that the selected keywords and filters effectively captured the intended research space, we analyzed the **dominant vocabulary** of the retrieved corpus.
 
-![Distribution per category](figs/distribution_per_category.png)
+![Word cloud](figs/word_cloud.png)
 
-**Interpretation (repository-level):**
-- Both prediction and evaluation heavily intersect with **engineering and computer science**, matching the review’s technical focus.
-- A significant fraction lies in **medicine/biochemistry/materials**, reflecting clinical relevance and validation needs.
+### Interpretation
+
+- Dominant terms such as *image*, *assessment*, *prediction*, *deep*, *model*, *surgery*, and *aesthetic* align directly with the review’s focus on **imaging-based computational prediction and evaluation of aesthetic outcomes**.  
+- The co-occurrence of technical terms (*deep*, *network*, *model*) with clinical context (*patient*, *surgery*, *outcome*) confirms that the retrieved literature lies at the intended **intersection of AI and surgical aesthetics**.  
+- The absence of prominent off-topic terminology indicates that the keyword design and filters were effective.
+
+Together, the source distribution and vocabulary analysis provide strong qualitative evidence that the **search strategy was fruitful and well targeted**.
 
 ---
 
-## 5. PRISMA Flow Numbers (Backed by Files)
+## 4) PRISMA workflow and screening stages
+
+All retrieved records entered a PRISMA-compliant screening pipeline:
+
+Identification → Duplicate Removal → Title Screening → Abstract Screening → Full-Text Screening → Qualitative Screening → Inclusion
+
+![PRISMA workflow](figs/prisma.jpg)
+
+### PRISMA flow numbers (fully backed by CSV files)
 
 | Stage | Records |
-|------|--------|
+|------|--------:|
 | Identified | 1,027 |
 | After duplicate removal | 939 |
 | After title screening | 744 |
@@ -111,171 +132,114 @@ This distribution supports a key claim in the manuscript: the area is inherently
 | After qualitative screening | 182 |
 | Final included | 182 (102 main + 85 supplementary) |
 
-All transitions are reproducible using the stage outputs in `prisma/`.
+Each transition is traceable to a dedicated folder under `prisma/`.
 
 ---
 
-## 6. PRISMA Screening Stages (What Each Folder Represents)
+## 5) Duplicate removal — `prisma/02_duplicate_removal/`
 
-This section explains *what happened at each stage*, *where it is stored*, and *how it connects to the paper figures and conclusions*.
+**Goal:** remove duplicate studies indexed across multiple repositories.
 
----
+**Detection strategy**
+- DOI matching (primary)
+- Normalized title similarity (fallback)
 
-### 6.1 Stage 01 — Identification (`prisma/01_articles_per_source/`)
+**Files**
+- `articles_duplicate_marked.csv` – all detected duplicates  
+- `articles_rejected_by_duplicacy.csv` – removed records  
+- `articles_after_duplicates.csv` – retained unique corpus  
+- `articles_categorized.csv` – intermediate organization artifact (if used)
 
-**Goal:** Build the *unfiltered* corpus from database search + manual retrieval.
-
-**Core file:**
-- `articles.csv`  
-  Raw retrieved records, including title, abstract, DOI (when available), year, venue, and source.
-
-**Why it matters:**  
-This file is the starting point for all subsequent filtering and statistical analysis.
-
----
-
-### 6.2 Stage 02 — Duplicate Removal (`prisma/02_duplicate_removal/`)
-
-**Goal:** Remove duplicate studies to prevent double counting and bias in synthesis.
-
-**Files:**
-- `articles_duplicate_marked.csv` — duplicates flagged  
-- `articles_rejected_by_duplicacy.csv` — removed duplicates  
-- `articles_after_duplicates.csv` — retained unique records  
-- `articles_categorized.csv` — intermediate organization/categorization artifact (if used in your pipeline)
-
-**Method (documented):**
-- DOI matching (when available)
-- Normalized title similarity (fallback when DOI missing)
-
-**Connection to figures:**  
-Duplicate removal directly impacts the “source distribution” interpretation—some sources may contribute overlapping entries. The post-cleaning picture is summarized here:
-
-![Distribution per source](figs/distribution_per_source.png)
+This step ensures that subsequent statistics and trends are not biased by indexing redundancy.
 
 ---
 
-### 6.3 Stage 03 — Title Screening (`prisma/03_title_screening/`)
+## 6) Title screening — `prisma/03_title_screening/`
 
-**Goal:** Quickly remove clearly out-of-scope records while keeping uncertain ones for abstract review.
+**Goal:** remove clearly out-of-scope records conservatively.
 
-**Files:**
-- `articles_titles_screened_marked.csv` — includes a decision flag per record  
-- `articles_rejected_by_titles.csv` — titles removed at this stage  
-- `articles_after_title_screening.csv` — retained records
+**Typical exclusion reasons**
+- Not related to surgery or not PR/oncological context  
+- No aesthetic outcome focus  
+- No computational or technical contribution  
 
-**Operational scope rule (applied consistently):**
-Include if title indicates relevance to at least one of:
-- plastic / reconstructive / oncological surgery context
-- aesthetic outcome (appearance, attractiveness, cosmetic result, symmetry, etc.)
-- technical method (ML/AI, simulation, modeling, measurement, scoring)
-
-Exclude if clearly about:
-- non-surgical aesthetic interventions (e.g., fillers)  
-- unrelated clinical endpoints (no aesthetic/appearance outcome focus)  
-- non-technical domains outside review scope
+**Files**
+- `articles_titles_screened_marked.csv`  
+- `articles_rejected_by_titles.csv`  
+- `articles_after_title_screening.csv`
 
 ---
 
-### 6.4 Stage 04 — Abstract Screening (`prisma/04_abstract_screening/`)
+## 7) Abstract screening — `prisma/04_abstract_screening/`
 
-**Goal:** Enforce methodological relevance and filter by the review’s core tasks:
-- **Prediction** (pre-op / post-op simulation, retrieval-based, generative, 3D modeling)
-- **Evaluation** (objective metrics, ML/DL scoring, automated assessment)
+**Goal:** enforce methodological relevance and lock the review taxonomy.
 
-**Files:**
+**Inclusion requirements**
+- Addresses aesthetic outcome **prediction** or **evaluation**  
+- Uses imaging data (2D or 3D)  
+- Presents a computational method (not purely narrative)
+
+**Files**
 - `articles_abstract_screened_marked.csv`  
 - `articles_rejected_by_abstract.csv`  
 - `articles_after_abstract_screening.csv`
 
-**Core inclusion logic (operationalized):**
-- Must target prediction or evaluation of aesthetic outcomes  
-- Must use imaging (2D or 3D); exclude purely tabular/text-only approaches  
-- Exclude works that are primarily medical narrative without technical novelty or evaluation
-
-**Connection to figures:**  
-This stage is where the taxonomy begins to stabilize and where the category distribution becomes meaningful:
+At this stage, task- and domain-level distributions become meaningful:
 
 ![Distribution per category](figs/distribution_per_category.png)
 
 ---
 
-### 6.5 Stage 05 — Full-Text Screening (`prisma/05_fulltext_screening/`)
+## 8) Full-text screening — `prisma/05_fulltext_screening/`
 
-**Goal:** Confirm eligibility using full-text evidence.
+**Goal:** confirm eligibility using full-text evidence.
 
-**Files:**
+**Common exclusion reasons**
+- Insufficient methodological detail  
+- Weak or unclear evaluation protocol  
+- Misalignment with aesthetic prediction/evaluation despite abstract wording  
+
+**Files**
 - `articles_full-text_screened_marked.csv`  
 - `articles_rejected_by_full-text.csv`  
 - `articles_after_full-text_screening.csv`
 
-**Full-text eligibility checks include:**
-- Clear technical contribution beyond descriptive reporting  
-- Adequate evaluation design (metrics, baselines, or validation protocol)  
-- Alignment with imaging-based prediction/evaluation  
-- Relevance to surgical aesthetic outcomes (PR/oncological contexts)
-
-**Connection to figures (keyword structure):**  
-At full-text stage, keyword co-occurrence becomes a useful summary of what the literature *actually contains* after removing noise:
+Conceptual structure of the retained literature:
 
 ![Co-occurrence graph](figs/co-occurance_graph.png)
 
-**How to read this figure (practical interpretation):**
-- Dense central region indicates shared concepts across subdomains (AI/ML, evaluation, clinical practice).
-- Clusters reflect subtopics such as facial attractiveness/rhinoplasty, breast reconstruction/BCCT, and methodological themes (CNN, classification, simulation).
-- Links highlight cross-domain transfer opportunities discussed in the manuscript.
+This network highlights dominant methodological themes, subdomains, and cross-domain overlaps.
 
 ---
 
-### 6.6 Stage 06 — Qualitative / Quality Screening (`prisma/06_qualitive_fulltext_qualitive/`)
+## 9) Qualitative / quality screening — `prisma/06_qualitive_fulltext_qualitive/`
 
-**Goal:** Filter eligible papers using a structured, domain-specific quality assessment focused on interpretability for synthesis.
+**Goal:** ensure that the final corpus supports robust comparative synthesis.
 
-**Files:**
+**Quality dimensions**
+- Novelty beyond incremental reporting  
+- Technical rigor and clarity  
+- Dataset adequacy and transparency  
+- Evaluation validity and (when applicable) clinical relevance  
+- Practical value for prediction/evaluation workflows  
+
+**Files**
 - `articles_qualitive_screened_marked.csv`  
 - `articles_rejected_by_quality.csv`  
 - `articles_after_qualitive_screening.csv`
 
-**Quality dimensions (applied consistently):**
-- Novelty (beyond incremental reporting)
-- Technical rigor (method clarity, reproducibility, robustness)
-- Dataset adequacy (size, representativeness, availability)
-- Evaluation validity (sound metrics, clinical relevance, validation protocol)
-- Practical relevance to aesthetic outcome prediction/evaluation
+---
 
-**Connection to figures (dominant concepts):**
-After filtering for quality and relevance, the word cloud summarizes the dominant language of the final corpus:
+## 10) Final included studies — `prisma/07_candidate_papers/`
 
-![Word cloud](figs/word_cloud.png)
-
-**Interpretation (repository-level):**
-- Confirms the centrality of image-based methods, deep learning, surgical context, and evaluation/prediction focus.
-- Helps validate that exclusions did not distort the review away from its intended scope.
+- `candidate_papers.csv` — definitive included corpus used in tables, synthesis, and discussion
 
 ---
 
-### 6.7 Stage 07 — Final Included Studies (`prisma/07_candidate_papers/`)
+## 11) Evidence synthesis — `prisma/08_summarized_texts/`
 
-**Goal:** Provide the final list used in synthesis, tables, and discussion.
-
-**File:**
-- `candidate_papers.csv`
-
-This is the primary “included studies” list backing:
-- method taxonomy
-- dataset/benchmark analysis
-- cross-domain comparison
-- limitations and future directions sections
-
----
-
-### 6.8 Stage 08 — Evidence Synthesis (`prisma/08_summarized_texts/`)
-
-**Goal:** Provide structured summaries used for comparison and narrative synthesis.
-
-**Files:**
-- `combined_summs.xlsx` — master synthesis sheet  
-- `summerized_per_tasks/` — task-wise synthesis:
+- `combined_summs.xlsx` — unified synthesis  
+- `summerized_per_tasks/`:
   - `Prediction.csv`
   - `Evaluation.csv`
   - `Datasets.csv`
@@ -283,83 +247,38 @@ This is the primary “included studies” list backing:
   - `Subjective Evaluation.csv`
   - `Support Tasks.csv`
 
-These enable transparent mapping from included studies to:
-- claims in the discussion
-- reported limitations (e.g., private datasets)
-- comparative tables and subgroup analyses
+These files operationalize the review’s taxonomy, comparisons, limitations, and future directions.
 
 ---
 
-## 7. Reproducibility and Auditability (How to Verify Everything)
+## 12) Reproducibility and protocol statement
 
-A third party can reproduce the PRISMA trajectory by following the folder order:
+This review was not registered in PROSPERO due to its emphasis on **computer science, engineering, and imaging-based computational methodologies**, which extend beyond PROSPERO’s primary biomedical scope.
 
-1. Start with `prisma/01_articles_per_source/articles.csv`
-2. Apply duplicate removal → compare with `02_duplicate_removal/*`
-3. Apply title screening → compare with `03_title_screening/*`
-4. Apply abstract screening → compare with `04_abstract_screening/*`
-5. Apply full-text screening → compare with `05_fulltext_screening/*`
-6. Apply qualitative screening → compare with `06_qualitive_fulltext_qualitive/*`
-7. Confirm final included list → `07_candidate_papers/candidate_papers.csv`
-
-Each “rejected” CSV provides an explicit audit trail of exclusions.
+Transparency and reproducibility are ensured via:
+- full public PRISMA audit trail  
+- immutable CSV decision logs  
+- explicit stage-level rejection files  
 
 ---
 
-## 8. Protocol Registration Statement
+## 13) Repository hierarchy
 
-This review was **not registered in PROSPERO** due to its strong emphasis on **computer science, engineering, and imaging-based computational methodologies**, which extends beyond PROSPERO’s primary biomedical scope.
-
-Protocol transparency is ensured through:
-- public release of the full screening trail
-- immutable CSV decision logs
-- explicit rejection sets at each stage
-
----
-
-## 9. Repository Hierarchy (Full File Tree)
-
-    review-paper tree
-    ├── README.md
-    ├── figs
-    │   ├── co-occurance_graph.png
-    │   ├── distribution_per_category.png
-    │   ├── distribution_per_source.png
-    │   ├── prisma.jpg
-    │   ├── trend_by_year.png
-    │   └── word_cloud.png
-    └── prisma
-        ├── 01_articles_per_source
-        │   └── articles.csv
-        ├── 02_duplicate_removal
-        │   ├── articles_after_duplicates.csv
-        │   ├── articles_categorized.csv
-        │   ├── articles_duplicate_marked.csv
-        │   └── articles_rejected_by_duplicacy.csv
-        ├── 03_title_screening
-        │   ├── articles_after_title_screening.csv
-        │   ├── articles_rejected_by_titles.csv
-        │   └── articles_titles_screened_marked.csv
-        ├── 04_abstract_screening
-        │   ├── articles_abstract_screened_marked.csv
-        │   ├── articles_after_abstract_screening.csv
-        │   └── articles_rejected_by_abstract.csv
-        ├── 05_fulltext_screening
-        │   ├── articles_after_full-text_screening.csv
-        │   ├── articles_full-text_screened_marked.csv
-        │   └── articles_rejected_by_full-text.csv
-        ├── 06_qualitive_fulltext_qualitive
-        │   ├── articles_after_qualitive_screening.csv
-        │   ├── articles_qualitive_screened_marked.csv
-        │   └── articles_rejected_by_quality.csv
-        ├── 07_candidate_papers
-        │   └── candidate_papers.csv
-        └── 08_summarized_texts
-            ├── combined_summs.xlsx
-            └── summerized_per_tasks
-                ├── Datasets.csv
-                ├── Evaluation.csv
-                ├── Prediction.csv
-                ├── Reviews.csv
-                ├── Subjective Evaluation.csv
-                └── Support Tasks.csv
+review-paper tree  
+├── README.md  
+├── figs  
+│   ├── prisma.jpg  
+│   ├── distribution_per_source.png  
+│   ├── distribution_per_category.png  
+│   ├── trend_by_year.png  
+│   ├── co-occurance_graph.png  
+│   └── word_cloud.png  
+└── prisma  
+    ├── 01_articles_per_source  
+    ├── 02_duplicate_removal  
+    ├── 03_title_screening  
+    ├── 04_abstract_screening  
+    ├── 05_fulltext_screening  
+    ├── 06_qualitive_fulltext_qualitive  
+    ├── 07_candidate_papers  
+    └── 08_summarized_texts

@@ -314,7 +314,7 @@ To ensure a structured and reproducible evaluation of study quality, a custom qu
 
 This framework was adapted from the conceptual principles of QUADAS-2 and PROBAST, but specifically tailored to machine learning–based, imaging-driven, and methodological studies.
 
-Each included full-text article was assessed across five predefined quality domains, as summarized in Table X.
+Each included full-text article was assessed across five predefined quality domains, as summarized in below table.
 
 | Domain               | Assessment Criteria |
 |---------------------|---------------------|

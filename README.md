@@ -10,33 +10,23 @@ Corresponding author: maria.h.sampaio@inesctec.pt
 
 This section explains **where** the literature was retrieved from, **why** those repositories were selected, and **how** the search queries were constructed to target the intended research space.
 
-### 1.1 Selected repositories (and why they matter)
+### 1.1 Selected Repositories and Rationale
 
-To avoid repository bias and to cover both **clinical** and **computational** perspectives, we deliberately combined repositories with complementary strengths:
+To reduce repository bias and capture both **clinical** and **computational** literature, multiple complementary databases were searched:
 
-- Scopus  
-  Chosen as the reference platform for query design due to its broad interdisciplinary indexing and fine-grained filters (subject area, document type, language). It reliably captures work at the interface of engineering and medicine.
+- **Scopus** (primary platform for query design; broad interdisciplinary coverage)
+- **PubMed** (clinical and surgical literature)
+- **IEEE Xplore** (machine learning, computer vision, and technical methods)
+- **Semantic Scholar** (cross-disciplinary and recent publications; easier to find more semantically aligned studies to our objective)
+- **Manual backward reference screening** (missed or seminal studies)
 
-- PubMed  
-  Ensures coverage of oncological and reconstructive surgery literature, particularly studies grounded in clinical workflows and medical validation.
+Equivalent **conceptual search logic** was applied across all repositories, with only syntax-level adaptations.
 
-- IEEE Xplore  
-  Essential for capturing algorithmic, machine learning, computer vision, simulation, and 3D modeling approaches that may not appear in medically focused databases.
+All retrieved records were merged into a single dataset representing the **PRISMA Identification** stage:
 
-- Semantic Scholar  
-  Acts as a complementary discovery layer, often surfacing cross-disciplinary and recently published works not yet consistently indexed elsewhere.
+`prisma/01_articles_per_source/articles.csv`
 
-- Manual backward reference search  
-  Used to identify highly relevant or seminal studies cited by included works but missed by automated queries.
-
-Although each repository uses a different query syntax, the **same conceptual keyword logic and constraints** were applied across all platforms. Only syntax-level adaptations were made.
-
-All retrieved records from all repositories were merged into a single dataset representing the **Identification** stage of PRISMA.
-
-Merged raw retrieval (all sources combined):  
-prisma/01_articles_per_source/articles.csv
-
-This file contains titles, abstracts, DOIs (when available), publication years, venues, and source identifiers.
+The dataset contains titles, abstracts, DOIs (when available), publication years, venues, and source identifiers.
 
 ---
 
@@ -63,10 +53,6 @@ Additional constraints were imposed to improve comparability and rigor:
 - English language  
 - Journal articles  
 - Subject areas restricted to Computer Science and Engineering  
-
----
-
-### 1.3 Example search strings (Scopus – SQL-like format)
 
 The following blocks show the **exact logical structure** of the Scopus queries used in the study.  
 Equivalent queries were executed on PubMed, IEEE Xplore, and Semantic Scholar with syntax adaptations only.

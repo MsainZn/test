@@ -10,7 +10,7 @@ Corresponding author: maria.h.sampaio@inesctec.pt
 
 This section explains **where** the literature was retrieved from, **why** those repositories were selected, and **how** the search queries were constructed to target the intended research space.
 
-### 1.1 Selected Repositories and Rationale
+### 1.1) Selected Repositories and Rationale
 
 To reduce repository bias and capture both **clinical** and **computational** literature, multiple complementary databases were searched:
 
@@ -30,7 +30,7 @@ The dataset contains titles, abstracts, DOIs (when available), publication years
 
 ---
 
-### 1.2 Keyword design and search intent
+### 1.2) Keyword design and search intent
 
 The search strategy was constructed to deliberately target studies at the **intersection of aesthetic surgery and computational methodology**, ensuring both relevance and specificity.
 
@@ -48,7 +48,7 @@ Search terms were organized along three complementary dimensions:
 
 Only studies simultaneously addressing all three dimensions were eligible.
 
-#### 1.2.1 Rationale and constraints
+### 1.3) Rationale and constraints
 
 This structured design minimized the inclusion of:
 - purely clinical or psychological studies lacking a computational component,
@@ -228,7 +228,7 @@ Identification → Duplicate Removal → Title Screening → Abstract Screening 
 
 ---
 
-### 3 ) PRISMA flow summary and general rules (numerical evolution)
+### 3) Review Rules and Guidlines
 
 The table below summarizes the **quantitative evolution of the corpus** across PRISMA stages.  
 Importantly, reductions at each stage are **intentional and methodologically motivated**, not arbitrary filtering.

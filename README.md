@@ -48,7 +48,7 @@ Search terms were organized along three complementary dimensions:
 
 Only studies simultaneously addressing all three dimensions were eligible.
 
-### 1.3) Rationale and constraints
+### 1.3) Search Rationale and constraints
 
 This structured design minimized the inclusion of:
 - purely clinical or psychological studies lacking a computational component,
@@ -310,7 +310,9 @@ All screening transitions, inclusion decisions, and exclusions are traceable thr
 
 ### 3.4) Risk of bias and quality assessment
 
-To ensure a structured and reproducible evaluation of study quality, a custom quality assessment framework was applied. This framework was adapted from the conceptual principles of QUADAS-2 and PROBAST, but specifically tailored to machine learning–based, imaging-driven, and methodological studies.
+To ensure a structured and reproducible evaluation of study quality, a custom quality assessment framework was applied. 
+
+This framework was adapted from the conceptual principles of QUADAS-2 and PROBAST, but specifically tailored to machine learning–based, imaging-driven, and methodological studies.
 
 Each included full-text article was assessed across five predefined quality domains, as summarized in Table X.
 

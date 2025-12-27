@@ -281,15 +281,21 @@ Studies were excluded if they met any of the following:
 
 ### 3.2) Disagreement Resolution and Reviewing Roles
 
-Two independent reviewers (Helena & Moe) conducted all screening stages (Title, Abstract, Full-text, and Qualitive) following below rules:
+Two independent reviewers (Helena & Moe) conducted all screening stages (Title, Abstract, Full-text, and Qualitative) following the rules below:
 
-- Screening decisions were initially made independently
+- Screening decisions were initially made independently, where brief annotations were added for studies that were rejected to justify the reasoning. 
 
-- Disagreements were resolved through consensus discussion. To do so, the rejection reasons for each study is written im short details as justification. These notes can be found in csv files `rejection_by_stage.csv` at each stage directory. 
+- Disagreements were resolved through consensus discussion. Using the supplementary notes, the decisions were shared and discussed to reach a consensus. If consensus could not be reached, the manuscript was conservatively passed to the next screening stage for further evaluation, allowing final decisions to be made with more information and consensus.
 
-- If consensus could not be reached, the manuscript is passed down the next screening stage in order to assess more thoroughly.
+- For the **detailed review**, the selected final candidate studies were divided among all authors. Each author conducted a thorough review of their assigned studies and provided summarizations, including detailed information on datasets, metrics, algorithms, and key highlights.
 
-This process was applied consistently across all screening stages to minimize selection bias and subjective inclusion.
+- All information, including screening annotations, rejection justifications, study assignments, detailed review summaries, and study-reviewer assignment are fully documented in CSV files available in the GitHub repository. Examples include:  
+  - `articles_rejected_by_titles.csv`  
+  - `articles_rejected_by_abstract.csv`  
+  - `articles_rejected_by_full-text.csv`  
+  - `prisma/08_summarized_texts/summerized_per_tasks/`  
+
+- This process was applied consistently across all screening and review stages to minimize selection bias and ensure transparency in study inclusion.
 
 
 ### 3.3) Protocol registration and reporting standards

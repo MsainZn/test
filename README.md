@@ -32,27 +32,33 @@ The dataset contains titles, abstracts, DOIs (when available), publication years
 
 ### 1.2 Keyword design and search intent
 
-The search strategy was explicitly designed to capture the **intersection of three orthogonal dimensions**, ensuring both relevance and specificity:
+The search strategy was constructed to deliberately target studies at the **intersection of aesthetic surgery and computational methodology**, ensuring both relevance and specificity.
 
-1) Aesthetic context  
-   aesthetic, esthetic, cosmetic, plastic, reconstructive, oncological
+Search terms were organized along three complementary dimensions:
 
-2) Surgical domain  
-   surgery
+1. **Aesthetic and reconstructive context**  
+   *aesthetic/esthetic, cosmetic, plastic, reconstructive, oncological*
 
-3) Computational task  
-   - Prediction-oriented terms: outcome prediction, simulation, pre-operative prediction, post-operative prediction  
-   - Evaluation-oriented terms: evaluation, assessment, scoring
+2. **Surgical domain**  
+   *surgery*
 
-This structure prevents:
-- retrieval of purely clinical or psychological studies without computational contribution,
-- inclusion of non-surgical aesthetic interventions,
-- dilution of the corpus with non-imaging or non-technical works.
+3. **Computational objective**  
+   - **Prediction-oriented**: outcome prediction, simulation, pre-operative prediction, post-operative prediction  
+   - **Evaluation-oriented**: evaluation, assessment, scoring  
 
-Additional constraints were imposed to improve comparability and rigor:
-- English language  
-- Journal articles  
-- Subject areas restricted to Computer Science and Engineering  
+Only studies simultaneously addressing all three dimensions were eligible.
+
+#### 1.2.1 Rationale and constraints
+
+This structured design minimized the inclusion of:
+- purely clinical or psychological studies lacking a computational component,
+- non-surgical aesthetic interventions,
+- technically unrelated or non-imaging-based work.
+
+To further improve methodological consistency and cross-study comparability, the following constraints were applied:
+- English-language publications,
+- journal and conferences only,
+- subject areas mostly aligned with **Computer Science** and **Engineering**.
 
 The following blocks show the **exact logical structure** of the Scopus queries used in the study.  
 Equivalent queries were executed on PubMed, IEEE Xplore, and Semantic Scholar with syntax adaptations only.

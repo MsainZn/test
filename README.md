@@ -25,7 +25,7 @@ To ensure a transparent link between objectives and analysis, individual researc
 
 Each RQ block corresponds one-to-one with a study objective and is used to structure the Results and Discussion sections.
 
-The table below provides an explicit cross-reference between the (![Research Objectives](figs/objectives.jpg)) blocks, individual research questions, aligned study objectives, and the manuscript sections where each question is addressed. This mapping is intended to clarify the organization of the review before the description of the search strategy.
+The table below provides an explicit cross-reference between the blocks, individual research questions, aligned study objectives, and the manuscript sections where each question is addressed. This mapping is intended to clarify the organization of the review before the description of the search strategy.
 
 
 | Blocks                           | RQ ID | Research Question Focus                                                                                                                                 | Aligned Study Objective (Introduction)                                               | Primary Sections                                                                 |

@@ -225,7 +225,6 @@ Together, these analyses confirm that the retrieved corpus is coherent, interdis
 
 ---
 
-
 ## 3) PRISMA workflow and screening pipeline
 
 All retrieved records entered a **PRISMA-compliant, fully auditable screening pipeline** specifically designed for a **cross-disciplinary systematic review** spanning computer science, engineering, and surgical sciences.  
@@ -237,7 +236,7 @@ Identification → Duplicate Removal → Title Screening → Abstract Screening 
 
 ---
 
-### 3.1) PRISMA flow summary (numerical evolution)
+### 3 ) PRISMA flow summary and general rules (numerical evolution)
 
 The table below summarizes the **quantitative evolution of the corpus** across PRISMA stages.  
 Importantly, reductions at each stage are **intentional and methodologically motivated**, not arbitrary filtering.
@@ -254,15 +253,102 @@ Importantly, reductions at each stage are **intentional and methodologically mot
 
 Each numerical transition is supported by **explicit CSV decision logs**, ensuring full transparency.
 
+### 3.1) Eligibility criteria (explicit and prespecified)
+
+To minimize subjectivity and ensure consistency across reviewers, explicit eligibility criteria were defined a priori.
+
+#### 3.1.1) Inclusion criteria
+
+Studies were included if they satisfied all of the following:
+
+- Focused on aesthetic outcomes in plastic, reconstructive, or oncological surgery
+
+- Addressed outcome prediction or outcome evaluation/assessment
+
+- Employed a computational, algorithmic, or imaging-based methodology
+
+- Used medical images (e.g., photographs, 2D/3D imaging) as a primary data source
+
+- Were peer-reviewed journal articles
+
+- Published in English
+
+#### 3.1.2) Exclusion criteria
+
+Studies were excluded if they met any of the following:
+
+- Purely clinical, psychological, or survey-based studies without computational methods
+
+- Non-surgical aesthetic procedures (e.g., dermatology, makeup, non-invasive cosmetics)
+
+- Editorials, commentaries, conference abstracts, theses, or non-peer-reviewed material
+
+- Studies lacking sufficient methodological detail to allow comparative analysis
+
+- Duplicate publications of the same study (only one canonical version retained)
+
+### 3.2) Disagreement Resolution and Reviewing Roles
+
+Two independent reviewers (Helena & Moe) conducted all screening stages (Title, Abstract, Full-text, and Qualitive) following below rules:
+
+- Screening decisions were initially made independently
+
+- Disagreements were resolved through consensus discussion. To do so, the rejection reasons for each study is written im short details as justification. These notes can be found in csv files `rejection_by_stage.csv` at each stage directory. 
+
+- If consensus could not be reached, the manuscript is passed down the next screening stage in order to assess more thoroughly.
+
+This process was applied consistently across all screening stages to minimize selection bias and subjective inclusion.
+
+
+### 3.3) Protocol registration and reporting standards
+
+This review was not registered in PROSPERO due to its primary emphasis on computer science, engineering, and imaging-based computational methodologies, which extend beyond PROSPERO’s core biomedical scope.
+
+- PROSPERO is primarily designed for biomedical intervention reviews (e.g., clinical trials, therapeutic effectiveness). 
+- The present review focuses on computational, imaging-based, and algorithmic methods for aesthetic outcome prediction and evaluation, spanning computer science, engineering, and surgical domains. 
+- As such, it falls partially outside PROSPERO’s intended scope.
+
+However, transparency and reproducibility are ensured through:
+
+- A full, publicly accessible PRISMA audit trail  
+- Immutable CSV-based decision logs for every screening stage  
+- Explicit, stage-level rejection files documenting exclusion rationale  
+
+All screening transitions, inclusion decisions, and exclusions are traceable through version-controlled artifacts in the repository, enabling complete methodological inspection and independent reproducibility.
+
+### 3.4) Risk of bias and quality assessment
+
+To ensure a structured and reproducible evaluation of study quality, a custom quality assessment framework was applied. This framework was adapted from the conceptual principles of QUADAS-2 and PROBAST, but specifically tailored to machine learning–based, imaging-driven, and methodological studies.
+
+Each included full-text article was assessed across five predefined quality domains, as summarized in Table X.
+
+| Domain               | Assessment Criteria |
+|---------------------|---------------------|
+| Methodological rigor | Clear problem formulation; appropriate model selection; transparent training and inference procedures |
+| Data transparency    | Adequate dataset description; sample size reporting; clear image acquisition protocols |
+| Evaluation validity  | Use of appropriate evaluation metrics; inclusion of validation and/or test splits; comparison against baselines or gold standards |
+| Reproducibility      | Sufficient implementation details; availability of code or pseudocode; clearly described experimental setup |
+| Clinical relevance   | Alignment with real-world surgical workflows; interpretability of model outputs; practical applicability |
+
+Each domain was independently rated using a three-level scale:
+
+- **Adequate**: All criteria within the domain were fully addressed and clearly reported.  
+- **Partially adequate**: Some criteria were addressed, but reporting was incomplete or lacked sufficient detail.  
+- **Inadequate**: Criteria were largely unmet or insufficiently described.
+
+Only studies rated as **adequate** or **partially adequate** across all domains were retained for qualitative synthesis. Studies excluded at this stage were not considered scientifically invalid; rather, exclusion reflected limited interpretability, transparency, or comparability for cross-study synthesis.
+
+All quality assessment decisions and justifications are documented in  `prisma/06_qualitive_fulltext_qualitive/` 
+
 ---
 
-### 3.2) Stage-wise PRISMA screening details and artifacts
+### 4) Stage-wise PRISMA screening details and artifacts
 
 This subsection explains **why each stage exists**, **how decisions were made**, **which studies were excluded**, and **where the evidence for those decisions resides**.
 
 ---
 
-#### 3.2.1) Identification — `prisma/01_articles_per_source`
+#### 4.1) Identification — `prisma/01_articles_per_source`
 
 **Rationale**  
 Given the interdisciplinary nature of aesthetic outcome prediction and evaluation, the identification stage was intentionally **recall-oriented**. Missing relevant computational studies would be more harmful than temporarily including marginal ones.
@@ -284,7 +370,7 @@ Given the interdisciplinary nature of aesthetic outcome prediction and evaluatio
 
 ---
 
-#### 3.2.2) Duplicate removal — `prisma/02_duplicate_removal`
+#### 4.2) Duplicate removal — `prisma/02_duplicate_removal`
 
 **Rationale**  
 The same study frequently appears across multiple repositories with slight metadata variations. Without explicit duplicate handling, downstream analyses (e.g., trends, distributions) would be distorted.
@@ -308,7 +394,7 @@ The same study frequently appears across multiple repositories with slight metad
 
 ---
 
-#### 3.2.3) Title screening — `prisma/03_title_screening`
+#### 4.3) Title screening — `prisma/03_title_screening`
 
 **Rationale**  
 Title screening acts as a **first relevance filter**, removing studies that are unmistakably outside the review’s scope while preserving ambiguous cases.
@@ -332,7 +418,7 @@ Title screening acts as a **first relevance filter**, removing studies that are 
 
 ---
 
-#### 3.2.4) Abstract screening — `prisma/04_abstract_screening`
+#### 4.4) Abstract screening — `prisma/04_abstract_screening`
 
 **Rationale**  
 Abstract screening enforces **methodological relevance** and formalizes the **prediction vs. evaluation taxonomy** used throughout the review.
@@ -356,7 +442,7 @@ Abstract screening enforces **methodological relevance** and formalizes the **pr
 
 ---
 
-#### 3.2.5) Full-text screening — `prisma/05_fulltext_screening`
+#### 4.5) Full-text screening — `prisma/05_fulltext_screening`
 
 **Rationale**  
 At this stage, claims made in abstracts are verified against **actual methodological content**.
@@ -380,7 +466,7 @@ At this stage, claims made in abstracts are verified against **actual methodolog
 
 ---
 
-#### 3.2.6) Qualitative / quality screening — `prisma/06_qualitive_fulltext_qualitive`
+#### 4.6) Qualitative / quality screening — `prisma/06_qualitive_fulltext_qualitive`
 
 **Rationale**  
 Not all technically valid studies are equally useful for comparative synthesis.  
@@ -406,7 +492,7 @@ This stage prioritizes **substantive, interpretable, and transferable contributi
 
 ---
 
-### 3.3) Final inclusion and synthesis artifacts
+### 4.7) Final inclusion and synthesis artifacts
 
 The final corpus is structured to **directly support analysis, comparison, and discussion**.
 
@@ -465,7 +551,7 @@ This visualization validates thematic coherence and reveals methodological clust
 
 ---
 
-## 4) Final included studies and synthesis artifacts
+## 5) Final included studies and synthesis artifacts
 
 Final included studies:
 - prisma/07_candidate_papers/candidate_papers.csv
@@ -478,21 +564,7 @@ These files directly support the paper’s taxonomy, comparative tables, limitat
 
 ---
 
-## 5) Reproducibility and protocol statement
-
-This review was not registered in PROSPERO due to its primary emphasis on computer science, engineering, and imaging-based computational methodologies, which extend beyond PROSPERO’s core biomedical scope.
-
-Transparency and reproducibility are ensured through:
-
-- A full, publicly accessible PRISMA audit trail  
-- Immutable CSV-based decision logs for every screening stage  
-- Explicit, stage-level rejection files documenting exclusion rationale  
-
-All screening transitions, inclusion decisions, and exclusions are traceable through version-controlled artifacts in the repository, enabling complete methodological inspection and independent reproducibility.
-
----
-
-## 6) Repository hierarchy
+## 7) Repository hierarchy
 
 review-paper tree  
 ├── README.md  

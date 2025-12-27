@@ -378,35 +378,6 @@ At this stage, claims made in abstracts are verified against **actual methodolog
 | `articles_rejected_by_full-text.csv` | Excluded studies with explicit reasons |
 | `articles_after_full-text_screening.csv` | Studies retained for quality assessment |
 
-**Conceptual structure of retained literature**
-
-![Co-occurrence graph](figs/co-occurance_graph.png)
-
-### Interpretation of the keyword co-occurrence network
-
-The co-occurrence network provides a compact view of the **conceptual organization** of the retained literature, showing how methodological, clinical, and evaluation concepts are connected.
-
-- **Modular but connected structure**
-  - Distinct thematic clusters with strong inter-cluster links
-  - Indicates an integrative, non-fragmented research field
-
-- **Central bridging concepts**
-  - artificial intelligence, machine learning, plastic surgery
-  - Link computational methods with clinical application
-
-- **Main clusters**
-  - **Prediction / methodology**: CNNs, networks, training, representation, GANs, simulation  
-  - **Evaluation / validation**: aesthetic evaluation, objective assessment, gold standard  
-  - **Clinical domains**: facial aesthetics and breast surgery (reconstruction, cancer, cosmetic outcome)  
-  - **Imaging modality**: photograph and digital photography as dominant data sources
-
-- **Key implication**
-  - Prediction and evaluation are distinct but tightly coupled
-  - Computational methods are reused across clinical contexts
-  - The structure validates the review taxonomy and supports cross-study comparison
-
-This visualization validates thematic coherence and reveals methodological clusters.
-
 ---
 
 #### 3.2.6) Qualitative / quality screening — `prisma/06_qualitive_fulltext_qualitive`
@@ -462,6 +433,35 @@ The final corpus is structured to **directly support analysis, comparison, and d
 - The pipeline supports **independent audit, replication, and extension**
 
 This PRISMA implementation is therefore not only compliant, but **operationally transparent and computationally reproducible**.
+
+**Conceptual structure of retained literature**
+
+![Co-occurrence graph](figs/co-occurance_graph.png)
+
+### Interpretation of the keyword co-occurrence network
+
+The co-occurrence network provides a compact view of the **conceptual organization** of the retained literature, showing how methodological, clinical, and evaluation concepts are connected.
+
+- **Modular but connected structure**
+  - Distinct thematic clusters with strong inter-cluster links
+  - Indicates an integrative, non-fragmented research field
+
+- **Central bridging concepts**
+  - artificial intelligence, machine learning, plastic surgery
+  - Link computational methods with clinical application
+
+- **Main clusters**
+  - **Prediction / methodology**: CNNs, networks, training, representation, GANs, simulation  
+  - **Evaluation / validation**: aesthetic evaluation, objective assessment, gold standard  
+  - **Clinical domains**: facial aesthetics and breast surgery (reconstruction, cancer, cosmetic outcome)  
+  - **Imaging modality**: photograph and digital photography as dominant data sources
+
+- **Key implication**
+  - Prediction and evaluation are distinct but tightly coupled
+  - Computational methods are reused across clinical contexts
+  - The structure validates the review taxonomy and supports cross-study comparison
+
+This visualization validates thematic coherence and reveals methodological clusters.
 
 ---
 

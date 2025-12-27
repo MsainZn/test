@@ -6,7 +6,29 @@ Corresponding author: maria.h.sampaio@inesctec.pt
 
 ---
 
-| Figure 1 Block                     | RQ ID | Research Question Focus                                                                                                                                 | Aligned Study Objective (Introduction)                                               | Primary Sections                                                                 |
+## Repository structure and study objectives
+
+This repository accompanies the systematic review **“Automatic Prediction and Evaluation of Aesthetic Outcomes in Plastic and Oncological Surgery.”**  
+The review is guided by a set of study objectives defined in the manuscript Introduction and operationalized through a structured set of research questions (RQs).
+
+### Study objectives
+The objectives of the review are to:
+- review state-of-the-art methods for aesthetic outcome prediction and evaluation;
+- analyze the methodological evolution from traditional approaches to AI-driven methods;
+- organize and assess datasets, benchmarks, and computational resources;
+- identify cross-domain similarities and transferable techniques;
+- highlight methodological, data-related, and validation limitations; and
+- assess clinical integration while outlining future research directions.
+
+### Research-question blocks
+To ensure a transparent link between objectives and analysis, individual research questions are grouped into **RQ blocks** (![Research Objectives](figs/objectives.jpg)
+).  
+Each RQ block corresponds one-to-one with a study objective and is used to structure the Results and Discussion sections.
+
+The table below provides an explicit cross-reference between the (![Research Objectives](figs/objectives.jpg) blocks, individual research questions, aligned study objectives, and the manuscript sections where each question is addressed. This mapping is intended to clarify the organization of the review before the description of the search strategy.
+
+
+| Blocks                           | RQ ID | Research Question Focus                                                                                                                                 | Aligned Study Objective (Introduction)                                               | Primary Sections                                                                 |
 |----------------------------------|-------|----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 | Review key developments           | RQ1   | What are the current state-of-the-art (SoTA) methods for aesthetic outcome prediction and evaluation in plastic and oncological surgery?                  | Evaluate the state-of-the-art methods for surgical aesthetic assessment               | Sections 3 (Aesthetic Outcome Prediction), 4 (Aesthetic Outcome Evaluation)       |
 | Review key developments           | RQ2   | How have aesthetic prediction and evaluation methods evolved from traditional techniques to modern AI-driven approaches?                                 | Analyze the methodological evolution toward AI-driven approaches                     | Sections 2 (Proposed Taxonomy), 3, 4                                               |

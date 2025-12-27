@@ -6,6 +6,19 @@ Corresponding author: maria.h.sampaio@inesctec.pt
 
 ---
 
+| Figure 1 Block                     | RQ ID | Research Question Focus                                                                                                                                 | Aligned Study Objective (Introduction)                                               | Primary Sections                                                                 |
+|----------------------------------|-------|----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| Review key developments           | RQ1   | What are the current state-of-the-art (SoTA) methods for aesthetic outcome prediction and evaluation in plastic and oncological surgery?                  | Evaluate the state-of-the-art methods for surgical aesthetic assessment               | Sections 3 (Aesthetic Outcome Prediction), 4 (Aesthetic Outcome Evaluation)       |
+| Review key developments           | RQ2   | How have aesthetic prediction and evaluation methods evolved from traditional techniques to modern AI-driven approaches?                                 | Analyze the methodological evolution toward AI-driven approaches                     | Sections 2 (Proposed Taxonomy), 3, 4                                               |
+| Organizing research resources     | RQ3   | What datasets, benchmarks, and computational resources are used, and how are they organized across studies?                                              | Analyze key datasets, benchmarks, and computational models in aesthetic outcome research | Sections 5 (Methodology), 6.1 (Datasets), Tables 2–3                               |
+| Identifying cross-domain similarities | RQ4a  | What methodological overlaps exist across facial, breast, and oncological aesthetic surgeries, and how can techniques be transferred across domains?     | Identify overlaps and transferable techniques across surgical domains                 | Sections 3, 4 (Comparative analyses)                                               |
+| Highlighting limitations          | RQ4b  | What are the key methodological, data-related, and validation limitations affecting current approaches?                                                  | Highlight methodological and data limitations in current methods                     | Section 7 (Impediments), Sections 6.1–6.4                                         |
+| Integrating clinical perspectives | RQ5   | How do prediction and evaluation methods translate into clinical workflows and patient communication?                                                    | Assess the integration of computational tools into clinical workflows                | Sections 3 (Comparing Prediction Methods), 4 (Comparing Evaluation Methods), 8 (Conclusion) |
+| Exploring future directions       | RQ6   | What future research directions and translational opportunities emerge from current trends?                                                              | Explore potential directions for improving aesthetic prediction and evaluation        | Sections 3.5 (Future Directions), 4.5 (Future Directions), 8 (Conclusion)         |
+
+
+---
+
 ## 1) Search strategy and literature retrieval
 
 This section explains **where** the literature was retrieved from, **why** those repositories were selected, and **how** the search queries were constructed to target the intended research space.

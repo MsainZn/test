@@ -278,7 +278,7 @@ Importantly, reductions at each stage are **intentional and methodologically mot
 | After abstract screening | 386 | Studies failing methodological relevance criteria excluded |
 | Full-text assessed | 250 | Subset eligible for detailed methodological inspection |
 | After qualitative screening | 182 | Studies meeting rigor, transparency, and comparability requirements |
-| Final included | 182 | 102 primary (core analysis) + 85 supplementary (contextual support) |
+| Final included | 182 | 107 primary (core analysis) + 75 supplementary (contextual support) |
 
 Each numerical transition is supported by **explicit CSV decision logs**, ensuring full transparency.
 
